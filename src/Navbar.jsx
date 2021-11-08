@@ -18,9 +18,13 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+<<<<<<< HEAD
           <div>
             {/* <LocalPoliceIcon /> */}
           </div>
+=======
+          <div>{/* <LocalPoliceIcon /> */}</div>
+>>>>>>> 2016cd3dbf14b500ebdf71999bc32d7cbef0fb28
           {/* <div>
             <img src={NatureIcon} style={{ height: "100px" }} alt="logo" />
           </div> */}
@@ -32,7 +36,11 @@ const Navbar = () => {
               fontFamily: "cursive",
               fontSize: "bold",
               marginTop: "20px",
+<<<<<<< HEAD
               color:"white"
+=======
+              color: "white",
+>>>>>>> 2016cd3dbf14b500ebdf71999bc32d7cbef0fb28
             }}
           >
             DigitalPoliceOffice
