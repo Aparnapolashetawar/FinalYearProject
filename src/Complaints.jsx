@@ -130,8 +130,4 @@ const Contact = () => {
     </>
   );
 };
-<<<<<<< HEAD
-export default Complaints;
-=======
 export default Contact;
->>>>>>> 7349daf6dfbe6a29e10c8b98826a47d17e1e5887
