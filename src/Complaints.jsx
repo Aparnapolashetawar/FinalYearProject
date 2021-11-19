@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-
-const Complaints = () =>{
-    return <h1>THIS IS Complaints PAGE</h1>
-};
-export default Complaints;
-=======
 import React, { useState } from "react";
 
 const Complaints = () => {
@@ -153,4 +144,3 @@ const Complaints = () => {
   );
 };
 export default Complaints;
->>>>>>> 2016cd3dbf14b500ebdf71999bc32d7cbef0fb28
