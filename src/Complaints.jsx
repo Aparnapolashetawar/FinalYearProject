@@ -1,121 +1,100 @@
-<<<<<<< HEAD
-import React from "react";
-
-
-const Complaints = () =>{
-    return <h1>THIS IS Complaints PAGE</h1>
-};
-export default Complaints;
-=======
 import React, { useState } from "react";
 
-const Complaints = () => {
+const Contact = () => {
   const [data, setData] = useState({
     fullname: "",
     phone: "",
     email: "",
+    msg: "",
     address: "",
-    complaint: "",
   });
 
-  let name, value;
-  const getData = (event) => {
-    name = event.target.name;
-    value = event.target.value;
-    setData({ ...data, [name]: value });
+  const InputEvent = (event) => {
+    const { name, value } = event.target;
+
+    setData((preVal) => {
+      return {
+        ...preVal,
+        [name]: value,
+      };
+    });
   };
 
-  const postData = async (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
-
-    const { fullname, phone, email, address, complaint } = data;
-
-    const res = await fetch(
-      "https://police-1-e2049-default-rtdb.firebaseio.com/police.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullname,
-          phone,
-          email,
-          address,
-          complaint,
-        }),
-      }
+    alert(
+      `My name is  ${data.fullname}. My Mobile number is ${data.phone} and email is ${data.email}, my address is ${data.address}, I Want Register Complain of  ${data.msg}`
     );
   };
-
   return (
     <>
-      <div class="a">
-        <div className="my-5">
-          <h1 className="text-center"> Register Complaint Here </h1>
-        </div>
+      <div class="image">
+        <h1>Register Complaint Here</h1>
+
         <div className="container contact_div">
-          <div className="row">
-            <div className="col-md-6 col-10 mx-auto">
-              <form method="POST">
-                <div className="mb-3">
-                  <label for="exampleFormControlInput1" className="form-label">
+          <div className="row ">
+            <div className="col-md-6 col-10 mx-auto solution">
+              <form onSubmit={formSubmit}>
+                <div className="mb-3 ">
+                  <label for="exampleFormControlInput1" className="form-label ">
                     Full Name
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="fullname"
                     value={data.fullname}
-                    onChange={getData}
+                    onChange={InputEvent}
                     placeholder="Enter Your Name"
                     required
                   />
                 </div>
+
                 <div className="mb-3">
                   <label for="exampleFormControlInput1" className="form-label">
                     Phone No
                   </label>
                   <input
                     type="Number"
-                    class="form-control"
+                    class="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="phone"
                     value={data.phone}
-                    onChange={getData}
+                    onChange={InputEvent}
                     placeholder="Mobile Number"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    name="email"
-                    value={data.email}
-                    onChange={getData}
-                    placeholder="E-mail"
                     required
                   />
                 </div>
 
                 <div class="mb-3">
                   <label for="exampleFormControlInput1" class="form-label">
-                    Address
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="email"
+                    value={data.email}
+                    onChange={InputEvent}
+                    placeholder="name@FullName example.com"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">
+                    Permanent Address
                   </label>
                   <input
                     type="address"
-                    class="form-control"
+                    class="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="address"
                     value={data.address}
-                    onChange={getData}
-                    placeholder="Address"
+                    onChange={InputEvent}
+                    placeholder="address"
                     required
                   />
                 </div>
@@ -125,21 +104,20 @@ const Complaints = () => {
                     Complaint Details
                   </label>
                   <textarea
-                    class="form-control"
+                    class="form-control border border-info"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    name="complaint"
-                    value={data.complaint}
-                    onChange={getData}
-                    placeholder="Register Here"
+                    name="msg"
+                    value={data.msg}
+                    onChange={InputEvent}
+                    placeholder="Add Complaint"
                     required
                   ></textarea>
                 </div>
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <button
-                    class="b btn btn-outline-primary sub"
+                    class="btn btn-outline-primary sub below rounded-pill button1  border border-info"
                     type="submit"
-                    onClick={postData}
                   >
                     Submit form
                   </button>
@@ -152,5 +130,4 @@ const Complaints = () => {
     </>
   );
 };
-export default Complaints;
->>>>>>> 2016cd3dbf14b500ebdf71999bc32d7cbef0fb28
+export default Contact;

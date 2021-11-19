@@ -1,5 +1,86 @@
-.b {
+.below {
   margin-bottom: 20%;
   margin-left: 40%;
   margin-top: 5%;
+}
+
+.whole {
+  margin: 0;
+  padding: 0;
+  font-family: Monospace;
+  background: linear-gradient(120deg, #2980b9, #8e44ad);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.whole2 {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+}
+
+.whole2 h1 {
+  text-align: center;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid silver;
+  font-weight: bolder;
+}
+
+.form-control {
+  margin-bottom: 5%;
+}
+
+.a {
+  margin-top: 10%;
+}
+
+.whole2 form {
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.logbtn {
+  width: 100%;
+  margin-bottom: 15%;
+  margin-top: 5%;
+  border-radius: 25px;
+  overflow: hidden;
+  perspective: 1px;
+}
+
+.image {
+  background-image: url("images/tiranga.PNG");
+  background-size: cover;
+}
+
+.image h1 {
+  text-align: center;
+  padding: 90px 0 20px 0;
+
+  font-weight: bolder;
+}
+
+.button1 {
+  margin-left: 20%;
+  text-align: center;
+  width: 60%;
+}
+
+.starter {
+  font-family: cursive;
+  font-size: bold;
+  margin-top: 20px;
+  color: white;
+  /*fontFamily: "cursive",
+              fontSize: "bold",
+              marginTop: "20px",
+              color: "white",*/
+}
+
+.solution {
+  font-weight: 500;
 }
