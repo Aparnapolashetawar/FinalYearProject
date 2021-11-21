@@ -7,6 +7,10 @@ const Contact = () => {
     email: "",
     msg: "",
     address: "",
+    pincode: "",
+    vaddress: "",
+    vpincode: "",
+    victim: "",
   });
 
   const InputEvent = (event) => {
@@ -22,9 +26,7 @@ const Contact = () => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `My name is  ${data.fullname}. My Mobile number is ${data.phone} and email is ${data.email}, my address is ${data.address}, I Want Register Complain of  ${data.msg}`
-    );
+    alert("Form Submitted");
   };
   return (
     <>
@@ -99,6 +101,68 @@ const Contact = () => {
                   />
                 </div>
 
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    Pin Code
+                  </label>
+                  <input
+                    type="Number"
+                    class="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="pincode"
+                    value={data.pincode}
+                    onChange={InputEvent}
+                    placeholder="Pin Code"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3 ">
+                  <label for="exampleFormControlInput1" className="form-label ">
+                    Victim's Full Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="victim"
+                    value={data.victim}
+                    onChange={InputEvent}
+                    placeholder="Enter Victim's Name"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">
+                    Victims's Address
+                  </label>
+                  <input
+                    type="address"
+                    class="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="vaddress"
+                    value={data.vaddress}
+                    onChange={InputEvent}
+                    placeholder="Enter Address if known"
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    Victim's Pin Code
+                  </label>
+                  <input
+                    type="Number"
+                    class="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="vpincode"
+                    value={data.vpincode}
+                    onChange={InputEvent}
+                    placeholder="Enter Pin Code if known"
+                  />
+                </div>
+
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">
                     Complaint Details
@@ -114,6 +178,7 @@ const Contact = () => {
                     required
                   ></textarea>
                 </div>
+
                 <div class="col-12 mb-3">
                   <button
                     class="btn btn-outline-primary sub below rounded-pill button1  border border-info"
