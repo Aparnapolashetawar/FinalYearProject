@@ -184,7 +184,7 @@ const Contact = () => {
                     class="btn btn-outline-primary sub below rounded-pill button1  border border-info"
                     type="submit"
                   >
-                    Submit form
+                    Register Complaint
                   </button>
                 </div>
               </form>

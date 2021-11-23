@@ -84,3 +84,7 @@
 .solution {
   font-weight: 500;
 }
+.help {
+  height: 50px;
+  background-color: rgb(56, 247, 56);
+}
