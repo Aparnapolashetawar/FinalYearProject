@@ -4,7 +4,11 @@ const Helpline = () => {
   return (
     <div className="help">
       <marquee>
-        <h2>Helpline number for womens in emergency situations 0000000000.</h2>
+        <p>
+          Helpline number for womens in emergency situations
+          9393939393&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          Helpline number for childrens in emergency situations 9898989898
+        </p>
       </marquee>
     </div>
   );
