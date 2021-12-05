@@ -16,17 +16,16 @@ mongoose
     console.log("connection succesful!!!");
   })
   .catch((err) => {
-    console.log("no connection");
+    console.log("no connection, Why????");
   });
 
 const middleware = (req, res, next) => {
   console.log("hello my middleware");
-  //   next();
+  next();
 };
 
-middleware();
 app.get("/", (req, res) => {
-  res.send("hello worls from the server");
+  res.send("hello world from the server");
 });
 app.get("/About", middleware, (req, res) => {
   res.send("hello About from the server");
