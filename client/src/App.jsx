@@ -15,6 +15,7 @@ import AddGallary from "./policeUI/AddGallary";
 import AddVehicle from "./policeUI/AddVehicle";
 import ShowComplaints from "./policeUI/ShowComplaints";
 import Admin from "./policeUI/Admin";
+import Vehicle from "./Vehicle";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route exact path="/policeUI/AddGallary" component={AddGallary} />
         <Route exact path="/About" component={About} />
         <Route exact path="/policeUI/AddAbout" component={AddAbout} />
+        <Route exact path="/Vehicle" component={Vehicle} />
         <Route exact path="/policeUI/AddVehicle" component={AddVehicle} />
         <Route exact path="/policeUI/Admin" component={Admin} />
         <Route exact path="/Login" component={Login} />

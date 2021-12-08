@@ -105,6 +105,16 @@ const Navbar = () => {
                     <NavLink
                       activeClassName="menu_active"
                       className="nav-link"
+                      to="/Vehicle"
+                    >
+                      Vehicle
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
                       to="/policeUI/AddVehicle"
                     >
                       AddVehicle
