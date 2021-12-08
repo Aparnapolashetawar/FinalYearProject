@@ -9,6 +9,7 @@ import Complaints from "./Complaints";
 import Gallary from "./Gallary";
 import About from "./About";
 import Login from "./Login";
+//import PoliceApp from "./PoliceApp";
 
 const App = () => {
   return (

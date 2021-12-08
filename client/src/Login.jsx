@@ -1,12 +1,38 @@
 import React, { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 const Login = () => {
-  const [userdata, setData] = useState({
-    email: "",
-    fullname: "",
-  });
+  const history = useHistory();
 
-  const InputEvent2 = (event) => {
+  /*const [userdata, setData] = useState({
+    loginEmail: "",
+    loginPassword: "",
+  });*/
+
+  const [loginEmail, setEmail] = useState("");
+  const [loginPassword, setPassword] = useState("");
+
+  const loginPolice = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/Logins", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        loginEmail,
+        loginPassword,
+      }),
+    });
+    const store = await res.json();
+    if (res.status === 400 || !store) {
+      window.alert("Invalid");
+    } else {
+      window.alert("login Successful");
+      history.push("/policeUI/PoliceApp");
+    }
+  };
+
+  /*const InputEvent2 = (event) => {
     const { name, value } = event.target;
 
     setData((preVal) => {
@@ -15,30 +41,25 @@ const Login = () => {
         [name]: value,
       };
     });
-  };
-
-  const Submitform = (e) => {
-    e.preventDefault();
-    alert("Form Submitted");
-  };
+  };*/
 
   return (
     <>
       <div className="whole">
         <div className="whole2 ">
           <h1>Login</h1>
-          <form onSubmit={Submitform}>
+          <form method="POST">
             <div class="form-group a  ">
               <label for="exampleFormControlInput1">Email address</label>
               <input
                 type="email"
                 class="form-control"
-                name="email"
-                value={userdata.email}
+                name="loginEmail"
+                value={loginEmail}
                 id="exampleFormControlInput1"
                 aria-describedby="emailHelp"
                 placeholder="Username"
-                onChange={InputEvent2}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -48,15 +69,19 @@ const Login = () => {
               <input
                 type="password"
                 class="form-control"
-                name="password"
-                id="password"
-                placeholder="password"
-                onChange={InputEvent}
+                name="loginPassword"
+                id="loginPassword"
+                placeholder="loginPassword"
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
 
-            <button type="submit" class="btn btn-primary logbtn  rounded-pill ">
+            <button
+              type="submit"
+              onClick={loginPolice}
+              class="btn btn-primary logbtn  rounded-pill "
+            >
               Login
             </button>
           </form>

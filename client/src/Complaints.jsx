@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+//not Working
 
-const Contact = () => {
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+const Complaints = () => {
+  const history = useHistory();
   const [data, setData] = useState({
     fullname: "",
     phone: "",
     email: "",
-    msg: "",
     address: "",
     pincode: "",
-    vaddress: "",
-    vpincode: "",
-    victim: "",
+    opponentName: "",
+    opponentAddress: "",
+    opponentPincode: "",
+    complaint: "",
   });
 
   const InputEvent = (event) => {
@@ -24,19 +28,59 @@ const Contact = () => {
     });
   };
 
-  const formSubmit = (e) => {
+  const PostData = async (e) => {
     e.preventDefault();
-    alert("Form Submitted");
+    const {
+      fullname,
+      phone,
+      email,
+      address,
+      pincode,
+      opponentName,
+      opponentAddress,
+      opponentPincode,
+      complaint,
+    } = data;
+
+    const res = await fetch("/Complaint", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullname,
+        phone,
+        email,
+        address,
+        pincode,
+        opponentName,
+        opponentAddress,
+        opponentPincode,
+        complaint,
+      }),
+    });
+
+    const store = await res.json();
+
+    if (res.status === 422 || !store) {
+      window.alert("Invalid Registration");
+      console.log("Invalid Registration");
+    } else {
+      window.alert("Complaint Registered Successfully");
+      console.log("Complaint Registered Successfully");
+      history.push("/");
+    }
   };
+
   return (
     <>
-      <div class="image">
+      <div className="image">
         <h1>Register Complaint Here</h1>
 
         <div className="container contact_div">
           <div className="row ">
             <div className="col-md-6 col-10 mx-auto solution">
-              <form onSubmit={formSubmit}>
+              <form method="POST">
                 <div className="mb-3 ">
                   <label for="exampleFormControlInput1" className="form-label ">
                     Full Name
@@ -59,7 +103,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="Number"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="phone"
                     value={data.phone}
@@ -69,13 +113,13 @@ const Contact = () => {
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
                     Email Address
                   </label>
                   <input
                     type="email"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="email"
                     value={data.email}
@@ -85,13 +129,13 @@ const Contact = () => {
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
                     Permanent Address
                   </label>
                   <input
                     type="address"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="address"
                     value={data.address}
@@ -107,7 +151,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="Number"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="pincode"
                     value={data.pincode}
@@ -119,30 +163,29 @@ const Contact = () => {
 
                 <div className="mb-3 ">
                   <label for="exampleFormControlInput1" className="form-label ">
-                    Victim's Full Name
+                    Complaint Against
                   </label>
                   <input
                     type="text"
                     className="form-control border border-info"
                     id="exampleFormControlInput1"
-                    name="victim"
-                    value={data.victim}
+                    name="opponentName"
+                    value={data.opponentName}
                     onChange={InputEvent}
-                    placeholder="Enter Victim's Name"
-                    required
+                    placeholder="Enter opponent's Name"
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
-                    Victims's Address
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    Address of opponent
                   </label>
                   <input
                     type="address"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
-                    name="vaddress"
-                    value={data.vaddress}
+                    name="opponentAddress"
+                    value={data.opponentAddress}
                     onChange={InputEvent}
                     placeholder="Enter Address if known"
                   />
@@ -150,39 +193,44 @@ const Contact = () => {
 
                 <div className="mb-3">
                   <label for="exampleFormControlInput1" className="form-label">
-                    Victim's Pin Code
+                    Opponent Pin Code
                   </label>
                   <input
                     type="Number"
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlInput1"
-                    name="vpincode"
-                    value={data.vpincode}
+                    name="opponentPincode"
+                    value={data.opponentPincode}
                     onChange={InputEvent}
                     placeholder="Enter Pin Code if known"
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     Complaint Details
                   </label>
                   <textarea
-                    class="form-control border border-info"
+                    className="form-control border border-info"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    name="msg"
-                    value={data.msg}
+                    name="complaint"
+                    value={data.complaint}
                     onChange={InputEvent}
                     placeholder="Add Complaint"
                     required
                   ></textarea>
                 </div>
 
-                <div class="col-12 mb-3">
+                <div className="col-12 mb-3">
                   <button
-                    class="btn btn-outline-primary sub below rounded-pill button1  border border-info"
+                    className="btn btn-outline-primary sub below rounded-pill button1  border border-info"
                     type="submit"
+                    value="Register Complaint"
+                    onClick={PostData}
                   >
                     Register Complaint
                   </button>
@@ -195,4 +243,4 @@ const Contact = () => {
     </>
   );
 };
-export default Contact;
+export default Complaints;
