@@ -7,4 +7,4 @@ const PoliceApp = () => {
   );
 };
 
-export default App;
+export default PoliceApp;

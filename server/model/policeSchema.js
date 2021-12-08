@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const policeSchema = new mongoose.Schema({
   policeName: {
@@ -18,7 +19,17 @@ const policeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
+
+//password hashing
 
 policeSchema.pre("save", async function (next) {
   console.log("hi from inside");
@@ -28,6 +39,19 @@ policeSchema.pre("save", async function (next) {
   }
   next();
 });
+
+//generating Token
+
+policeSchema.methods.generateAuthToken = async function () {
+  try {
+    let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+    this.tokens = this.tokens.concat({ token: token });
+    await this.save();
+    return token;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const Police = mongoose.model("POLICE", policeSchema);
 
