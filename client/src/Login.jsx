@@ -28,7 +28,7 @@ const Login = () => {
       window.alert("Invalid");
     } else {
       window.alert("login Successful");
-      history.push("/policeUI/PoliceApp");
+      history.push("/", { replace: true });
     }
   };
 

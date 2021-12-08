@@ -50,6 +50,17 @@ const Navbar = () => {
                       Complaints
                     </NavLink>
                   </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
+                      to="/policeUI/ShowComplaints"
+                    >
+                      ShowComplaints
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
                     <NavLink
                       activeClassName="menu_active"
@@ -59,6 +70,17 @@ const Navbar = () => {
                       Gallary
                     </NavLink>
                   </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
+                      to="/policeUI/AddGallary"
+                    >
+                      AddGallary
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
                     <NavLink
                       activeClassName="menu_active"
@@ -73,9 +95,49 @@ const Navbar = () => {
                     <NavLink
                       activeClassName="menu_active"
                       className="nav-link"
+                      to="/policeUI/AddAbout"
+                    >
+                      AddAbout
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
+                      to="/policeUI/AddVehicle"
+                    >
+                      AddVehicle
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
+                      to="/policeUI/Admin"
+                    >
+                      Admin
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
                       to="/Login"
                     >
                       Login
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="menu_active"
+                      className="nav-link"
+                      to="/policeUI/Logout"
+                    >
+                      Logout
                     </NavLink>
                   </li>
                 </ul>
