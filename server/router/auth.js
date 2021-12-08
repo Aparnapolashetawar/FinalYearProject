@@ -4,6 +4,7 @@ const Police = require("../model/policeSchema");
 const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //Publice Info below
 
@@ -84,6 +85,7 @@ router.post("/Admin", async (request, responce) => {
 
 router.post("/Logins", async (requ, resp) => {
   try {
+    let token;
     const { loginEmail, loginPassword } = requ.body;
     console.log("From server");
 
@@ -100,6 +102,13 @@ router.post("/Logins", async (requ, resp) => {
         loginPassword,
         policeLogin.policePassword
       );
+
+      token = await policeLogin.generateAuthToken();
+      console.log(token);
+      resp.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
 
       if (!isMatch) {
         resp.status(400).json({ error: "Invalid credentials " });
