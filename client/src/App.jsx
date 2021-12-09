@@ -38,6 +38,7 @@ const App = () => {
         <Route exact path="/policeUI/Admin" component={Admin} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/policeUI/Logout" component={Logout} />
+
         <Redirect to="/" />
       </Switch>
       <Footer />

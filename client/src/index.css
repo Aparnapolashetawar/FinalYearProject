@@ -100,3 +100,9 @@
 .marquee p {
   white-space: nowrap;
 }
+
+.gally {
+  padding: 120px;
+  background-image: url("images/tiranga.PNG");
+  background-size: cover;
+}
