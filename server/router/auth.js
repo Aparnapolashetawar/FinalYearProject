@@ -11,9 +11,15 @@ const upload = multer({ storage: storage });
 
 //Publice Info below
 
-router.get("/", (req, res) => {
-  res.send("hello world from the server as router");
+//displaying details
+router.get("/Complaints", (req, res) => {
+  Public.find().exec((err, Complaints) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, Complaints: Complaints });
+  });
 });
+
+//adding details
 
 router.post("/Complaint", async (req, res) => {
   const {

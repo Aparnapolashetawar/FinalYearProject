@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div className="container-fluid nav_bg">
+      <div className="container-fluid nav_bg ">
         <div className="row cli">
           <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
             <div className="container-fluid ">

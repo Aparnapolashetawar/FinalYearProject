@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const bodyparser = require("body-parser");
+const cors = require("cors");
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
@@ -11,6 +13,8 @@ require("./db/conn");
 // const Image = require("./model/imageSchema");
 
 app.use(express.json());
+app.use(bodyparser.json());
+app.use(cors());
 
 app.use(require("./router/auth"));
 
