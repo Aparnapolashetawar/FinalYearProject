@@ -1,10 +1,13 @@
 const express = require("express");
 const Public = require("../model/publicSchema");
 const Police = require("../model/policeSchema");
+const Image = require("../model/imageSchema");
 const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 //Publice Info below
 
@@ -122,5 +125,23 @@ router.post("/Logins", async (requ, resp) => {
     console.log(err);
   }
 });
+
+// image upload section
+
+router.post(
+  "/policeUI/AddGallary",
+  upload.single("image"),
+  function (req, res, next) {
+    const { image, caption } = req.body;
+    image.img.data = fs.readFileSync(req.file.path);
+    image.img.contentType = "image/jpg";
+    image.save(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  }
+);
 
 module.exports = router;
