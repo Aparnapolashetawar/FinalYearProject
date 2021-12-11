@@ -133,3 +133,12 @@
   overflow: hidden;
   font-weight: bolder;
 }
+
+.vh {
+  margin-top: 33%;
+  font-size: x-large;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: cursive;
+  background: linear-gradient(120deg, #2980, #8e44ad);
+}

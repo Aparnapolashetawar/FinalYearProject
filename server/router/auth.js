@@ -1,6 +1,7 @@
 const express = require("express");
 const Public = require("../model/publicSchema");
 const Police = require("../model/policeSchema");
+const VehicleData = require("../model/vehicleSchema");
 const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
@@ -129,4 +130,79 @@ router.post("/Logins", async (requ, resp) => {
   }
 });
 
+//Vehicle Info Below
+
+router.post("/AddVehicles", async (req, res) => {
+  const { vehiclenumber, category, registeredname, fine } = req.body;
+
+  if (!vehiclenumber || !category || !registeredname) {
+    return res.status(422).json({ error: "please fill the filds" });
+  }
+
+  try {
+    const vehicledata = new VehicleData({
+      vehiclenumber,
+      category,
+      registeredname,
+      fine,
+    });
+
+    const vehicleRegister = await vehicledata.save();
+    res.status(201).json({ message: "user vehicle registered successfully" });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//displaying details of Vehicle
+router.get("/AddVehicle", (req, res) => {
+  VehicleData.find().exec((err, AddVehicle) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, AddVehicle: AddVehicle });
+  });
+});
+
+//Editing Details From Database
+/*router.put("/update/:id", async (req, res) => {
+  VehicleData.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    (err, post) => {
+      if (err) return res.status(400).json({ success: false, err });
+      return res.status(200).json({ success: true });
+    }
+  );
+});
+
+//deleating Data from database
+router.delete("/delete/:id", (req, res) => {
+  VehicleData.findByIdAndRemove(req.params.id).exec((err, deleteItem) => {
+    if (err) {
+      res.send(err);
+    }
+    return res.json(deleteItem);
+  });
+});
+*/
+
+router.put("/update", async (req, res) => {
+  const nvehiclenumber = req.body.nvehiclenumber;
+  const ncategory = req.body.ncategory;
+  const nregisteredname = req.body.nregisteredname;
+  const nfine = req.body.nfine;
+  try {
+    await VehicleData.findById(id, (error, frd) => {
+      frd.vehiclenumber = nvehiclenumber;
+      frd.category = ncategory;
+      frd.registeredname = nregisteredname;
+      frd.fine = Number(nfine);
+      frd.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  res.send("updated");
+});
 module.exports = router;
