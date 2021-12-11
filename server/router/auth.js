@@ -1,11 +1,17 @@
 const express = require("express");
 const Public = require("../model/publicSchema");
 const Police = require("../model/policeSchema");
+<<<<<<< HEAD
 const VehicleData = require("../model/vehicleSchema");
+=======
+const Image = require("../model/imageSchema");
+>>>>>>> 7d8736fa0fc3f1e49db09372b18d4a8428e966c5
 const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 //Publice Info below
 
@@ -130,6 +136,7 @@ router.post("/Logins", async (requ, resp) => {
   }
 });
 
+<<<<<<< HEAD
 //Vehicle Info Below
 
 router.post("/AddVehicles", async (req, res) => {
@@ -205,4 +212,24 @@ router.put("/update", async (req, res) => {
   }
   res.send("updated");
 });
+=======
+// image upload section
+
+router.post(
+  "/policeUI/AddGallary",
+  upload.single("image"),
+  function (req, res, next) {
+    const { image, caption } = req.body;
+    image.img.data = fs.readFileSync(req.file.path);
+    image.img.contentType = "image/jpg";
+    image.save(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  }
+);
+
+>>>>>>> 7d8736fa0fc3f1e49db09372b18d4a8428e966c5
 module.exports = router;
