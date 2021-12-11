@@ -9,6 +9,7 @@ const About = () => {
           <center>
             <div>
               <br></br>
+              <br></br>
               <h1>
                 Public Officer for legal investigations and criminal
                 emergencies.
@@ -16,9 +17,10 @@ const About = () => {
             </div>
             <br></br>
           </center>
+
           <div className="container-fluid">
             <div className="policestation">
-              <img src={PoliceStation} width="600px" height="200px" />
+              <img src={PoliceStation} width="200px" height="200px" />
               <p className="policeinfo">
                 A police station is a building where police officers work. These
                 buildings often contain offices and accommodation for staff. A
@@ -56,13 +58,14 @@ const About = () => {
               </p>
             </div>
           </div>
+
           <div className="container-fluid">
             <div className="box">
               <center>
                 <h2>The role and functions of the police shall broadly be:-</h2>
               </center>
               <br></br>
-              <hr className="hr"></hr>
+              <hr></hr>
               <ol>
                 <li>
                   to uphold and enforce the law impartially, and to protect

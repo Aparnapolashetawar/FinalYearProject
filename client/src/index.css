@@ -142,3 +142,45 @@
   font-family: cursive;
   background: linear-gradient(120deg, #2980, #8e44ad);
 }
+.policestation {
+  display: flex;
+  float: left;
+  width: 100%;
+  border: 15px solid green;
+  padding: 50px;
+  /* margin: 20px; */
+  margin-left: 20px;
+}
+.policeinfo {
+  display: flex;
+  float: right;
+  font-size: 20px;
+  margin-left: 40px;
+}
+.policeman {
+  display: flex;
+  float: left;
+  width: 100%;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+.policemaninfo {
+  display: flex;
+  float: right;
+  font-size: 20px;
+  margin-left: 40px;
+}
+.aboutbg {
+  background-image: url("images/tiranga.PNG");
+  background-size: cover;
+}
+.box {
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+  font-size: 20px;
+}
