@@ -10,7 +10,7 @@ import Gallary from "./Gallary";
 import About from "./About";
 import Login from "./Login";
 import Logout from "./policeUI/Logout";
-import AddAbout from "./policeUI/AddAbout";
+
 import AddGallary from "./policeUI/AddGallary";
 import AddVehicle from "./policeUI/AddVehicle";
 import ShowComplaints from "./policeUI/ShowComplaints";
@@ -32,7 +32,7 @@ const App = () => {
         <Route exact path="/Gallary" component={Gallary} />
         <Route exact path="/policeUI/AddGallary" component={AddGallary} />
         <Route exact path="/About" component={About} />
-        <Route exact path="/policeUI/AddAbout" component={AddAbout} />
+
         <Route exact path="/Vehicle" component={Vehicle} />
         <Route exact path="/policeUI/AddVehicle" component={AddVehicle} />
         <Route exact path="/policeUI/Admin" component={Admin} />
