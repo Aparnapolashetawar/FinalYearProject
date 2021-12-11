@@ -133,7 +133,6 @@
   overflow: hidden;
   font-weight: bolder;
 }
-<<<<<<< HEAD
 
 .vh {
   margin-top: 33%;
@@ -142,44 +141,4 @@
   font-style: italic;
   font-family: cursive;
   background: linear-gradient(120deg, #2980, #8e44ad);
-=======
-.policestation {
-  display: flex;
-  float: "left";
-  width: 100%;
-  border: 15px solid green;
-  padding: 50px;
-  margin: 20px;
-}
-.policeinfo {
-  display: flex;
-  float: "right";
-  font-size: 20px;
-  margin-left: 40px;
-}
-.policeman {
-  display: flex;
-  float: "right";
-  width: 100%;
-  border: 15px solid green;
-  padding: 50px;
-  margin: 20px;
-}
-.policemaninfo {
-  font-size: 20px;
-  display: flex;
-  float: "left";
-  margin-left: 40px;
-}
-.aboutbg {
-  background-image: url("images/tiranga.PNG");
-  background-size: cover;
-}
-.box {
-  width: 100%;
-  border: 15px solid green;
-  padding: 50px;
-  margin: 20px;
-  font-size: 20px;
->>>>>>> 7d8736fa0fc3f1e49db09372b18d4a8428e966c5
 }
