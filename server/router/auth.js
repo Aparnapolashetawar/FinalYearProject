@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const Public = require("../model/publicSchema");
 const Police = require("../model/policeSchema");
 const VehicleData = require("../model/vehicleSchema");
@@ -206,5 +207,12 @@ router.put("/update", async (req, res) => {
     console.log(err);
   }
   res.send("updated");
+});
+
+// logout functinality
+router.get("/policeUI/logout", (req, res) => {
+  console.log("helwww logout");
+  res.clearCookie("jwtoken", { path: "/" });
+  res.status(200).send("user logout");
 });
 module.exports = router;

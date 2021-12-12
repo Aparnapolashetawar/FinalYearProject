@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "./App";
+
 const Login = () => {
+  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
 
   /*const [userdata, setData] = useState({
@@ -27,6 +30,7 @@ const Login = () => {
     if (res.status === 400 || !store) {
       window.alert("Invalid");
     } else {
+      dispatch({ type: "USER", payload: true });
       window.alert("login Successful");
       history.push("/", { replace: true });
     }
