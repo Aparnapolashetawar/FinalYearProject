@@ -118,15 +118,7 @@ const Navbar = () => {
               Vehicle
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink
-              activeClassName="menu_active"
-              className="nav-link"
-              to="/policeUI/Admin"
-            >
-              Admin
-            </NavLink>
-          </li>
+
           <li className="nav-item">
             <NavLink
               activeClassName="menu_active"
