@@ -1,12 +1,24 @@
 const express = require("express");
 const Public = require("../model/publicSchema");
+const Image = require("../model/imagesSchema");
 const Police = require("../model/policeSchema");
 const VehicleData = require("../model/vehicleSchema");
 const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const storage = multer.memoryStorage();
+const multer = require("multer");
+
+//Image Storage
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "/client/src/uploads/");
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
 const upload = multer({ storage: storage });
 
 //Publice Info below
@@ -164,47 +176,26 @@ router.get("/AddVehicle", (req, res) => {
   });
 });
 
-//Editing Details From Database
-/*router.put("/update/:id", async (req, res) => {
-  VehicleData.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body,
-    },
-    (err, post) => {
-      if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true });
-    }
-  );
-});
+//gallaries Details
 
-//deleating Data from database
-router.delete("/delete/:id", (req, res) => {
-  VehicleData.findByIdAndRemove(req.params.id).exec((err, deleteItem) => {
-    if (err) {
-      res.send(err);
-    }
-    return res.json(deleteItem);
+router.post("/gallaries", upload.single("gallaryImage"), (req, res) => {
+  const image = new Image({
+    title: req.body.title,
+    description: req.body.description,
+    gallaryImage: req.file.originalname,
   });
+  image
+    .save()
+    .then(() => res.json("New Post Added!"))
+    .catch((err) => res.status(400).json(`error:${err}`));
 });
-*/
 
-router.put("/update", async (req, res) => {
-  const nvehiclenumber = req.body.nvehiclenumber;
-  const ncategory = req.body.ncategory;
-  const nregisteredname = req.body.nregisteredname;
-  const nfine = req.body.nfine;
-  try {
-    await VehicleData.findById(id, (error, frd) => {
-      frd.vehiclenumber = nvehiclenumber;
-      frd.category = ncategory;
-      frd.registeredname = nregisteredname;
-      frd.fine = Number(nfine);
-      frd.save();
-    });
-  } catch (err) {
-    console.log(err);
-  }
-  res.send("updated");
+//desplaying Gallaries
+
+router.get("/gallaries", (req, res) => {
+  Image.find()
+    .then((gallary) => res.json(gallary))
+    .catch((err) => res.status(400).json(`Error:${err}`));
 });
+
 module.exports = router;

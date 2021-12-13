@@ -49,9 +49,13 @@ app.get("/Gallary", (req, res) => {
 app.get("/AddVehicles", (req, res) => {
   res.send("hello police from the server");
 });
-app.get("/policeUI/AddGallary",(req,res)=>{
-res.send("hello policeui addgallary from the server")
-})
+
+app.get("/gallaries", (req, res) => {
+  res.send("hello police from the server");
+});
+/*app.get("/policeUI/AddGallary", (req, res) => {
+  res.send("hello policeui addgallary from the server");
+});*/
 console.log("yess");
 app.listen(PORT, () => {
   console.log(`server is running and having port number ${PORT}`);

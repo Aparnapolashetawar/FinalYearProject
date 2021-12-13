@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
@@ -16,8 +16,17 @@ import AddVehicle from "./policeUI/AddVehicle";
 import ShowComplaints from "./policeUI/ShowComplaints";
 import Admin from "./policeUI/Admin";
 import Vehicle from "./Vehicle";
+import axios from "axios";
 
 const App = () => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/gallaries")
+      .then((res) => setPosts(res.data))
+      .catch((error) => console.log(error));
+  });
+
   return (
     <>
       <Navbar />
@@ -29,7 +38,7 @@ const App = () => {
           path="/policeUI/ShowComplaints"
           component={ShowComplaints}
         />
-        <Route exact path="/Gallary" component={Gallary} />
+        <Route exact path="/Gallary" render={() => <Gallary posts={posts} />} />
         <Route exact path="/policeUI/AddGallary" component={AddGallary} />
         <Route exact path="/About" component={About} />
 

@@ -1,40 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddGallary = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [fileName, setFileName] = useState("");
+
+  const onChangeFile = (e) => {
+    setFileName(e.target.files[0]);
+  };
+
+  const changeOnClick = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("gallaryImage", fileName);
+
+    setTitle("");
+    setDescription("");
+
+    axios
+      .post("/gallaries", formData)
+      .then(alert("Posted Sussessfully"))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
-      <div className="gally">
-        <center>
-          <div className="container">
-            <form action="/profile" method="post" enctype="multipart/form-data">
-              <h3>ADD IMAGE HERE</h3>
-              <br />
-              <input
-                type="file"
-                name="image"
-                id="inputimage"
-                required="true"
-                accept="image/*"
-              />
-              <h3>ADD CAPTION TO THE IMAGE</h3>
+      <div className="adimg">
+        <div className="container">
+          <h1>Post Images</h1>
+          <br />
+
+          <form onSubmit={changeOnClick} encType="multipart/form-data">
+            <div className="form-group">
+              <label htmlFor="title" className="form-label">
+                Title
+              </label>
               <input
                 type="text"
-                className="form-control border border-info"
-                id="caption"
-                name="caption"
-                required="true"
-                placeholder="Enter Caption for the image"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="form-control"
+                placeholder="Title"
               />
-              <button
-                className="btn btn-outline-primary sub below rounded-pill button1  border border-info"
-                type="submit"
-                value="upload image"
-              >
-                UPLOAD IMAGE
-              </button>
-            </form>
-          </div>
-        </center>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="description" className="form-label">
+                Description
+              </label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="form-control"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="file">Choose File</label>
+              <input
+                type="file"
+                filename="gallaryImage"
+                className="form-control-file"
+                onChange={onChangeFile}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Post Images
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

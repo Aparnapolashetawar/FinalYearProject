@@ -142,3 +142,16 @@
   font-family: cursive;
   background: linear-gradient(120deg, #2980, #8e44ad);
 }
+
+.adimg {
+  margin: 3rem;
+  padding: 4rem;
+  width: 31.25rem;
+  margin-left: 35%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.adimg h1 {
+  font-weight: 900;
+  color: var(--dark-green);
+}
