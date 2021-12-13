@@ -199,13 +199,10 @@ router.get("/gallaries", (req, res) => {
     .catch((err) => res.status(400).json(`Error:${err}`));
 });
 
-<<<<<<< HEAD
-=======
 // logout functinality
 router.get("/policeUI/logout", (req, res) => {
   console.log("helwww logout");
   res.clearCookie("jwtoken", { path: "/" });
   res.status(200).send("user logout");
 });
->>>>>>> a354259c00adcc368c739c19a5e1e5d647f0d0e5
 module.exports = router;
