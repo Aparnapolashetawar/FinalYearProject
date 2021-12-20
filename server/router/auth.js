@@ -8,7 +8,6 @@ const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
 
 //Image Storage
 const storage = multer.diskStorage({
@@ -37,6 +36,7 @@ router.get("/Complaints", (req, res) => {
 router.post("/Complaint", async (req, res) => {
   const {
     fullname,
+    adhar,
     phone,
     email,
     address,
@@ -47,13 +47,22 @@ router.post("/Complaint", async (req, res) => {
     complaint,
   } = req.body;
 
-  if (!fullname || !phone || !email || !address || !pincode || !complaint) {
+  if (
+    !fullname ||
+    !adhar ||
+    !phone ||
+    !email ||
+    !address ||
+    !pincode ||
+    !complaint
+  ) {
     return res.status(422).json({ error: "please fill the filds" });
   }
 
   try {
     const public = new Public({
       fullname,
+      adhar,
       phone,
       email,
       address,

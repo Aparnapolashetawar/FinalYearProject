@@ -5,6 +5,10 @@ const publicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  adhar: {
+    type: Number,
+    required: true,
+  },
   phone: {
     type: Number,
     required: true,
