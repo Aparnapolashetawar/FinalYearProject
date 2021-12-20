@@ -38,7 +38,7 @@ app.get("/Logins", (req, res) => {
   res.send("hello Login from the server");
 });
 
-app.get("/Admin", (req, res) => {
+app.get("/Admins", (req, res) => {
   res.send("hello Admin from the server");
 });
 

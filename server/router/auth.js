@@ -8,6 +8,11 @@ const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+<<<<<<< HEAD
+=======
+/*
+const multer = require("multer");
+>>>>>>> f2a9c7c24527888e1cdfbc18fad6338f35a3f6b0
 
 //Image Storage
 const storage = multer.diskStorage({
@@ -20,6 +25,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+*/
 
 //Publice Info below
 
@@ -82,7 +89,7 @@ router.post("/Complaint", async (req, res) => {
 
 //Admin Info Below
 
-router.post("/Admin", async (request, responce) => {
+router.post("/Admins", async (request, responce) => {
   const { policeName, policeEmail, policePassword, cpolicePassword } =
     request.body;
 
@@ -187,7 +194,7 @@ router.get("/AddVehicle", (req, res) => {
 });
 
 //gallaries Details
-
+/*
 router.post("/gallaries", upload.single("gallaryImage"), (req, res) => {
   const image = new Image({
     title: req.body.title,
@@ -207,6 +214,7 @@ router.get("/gallaries", (req, res) => {
     .then((gallary) => res.json(gallary))
     .catch((err) => res.status(400).json(`Error:${err}`));
 });
+*/
 
 // logout functinality
 router.get("/policeUI/logout", (req, res) => {
