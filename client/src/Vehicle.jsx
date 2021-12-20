@@ -27,8 +27,9 @@ class Vehicle extends Component {
     return (
       <div class="whole3 ">
         <div class="container">
-          <h1 class="acs"> Vehicles List </h1>
-
+          <center>
+            <h1>Lost vehicle/Picked vehicle</h1>
+          </center>
           <table
             class="table table-striped 
         "
@@ -38,8 +39,9 @@ class Vehicle extends Component {
                 <th scope="col">Sr.No.</th>
 
                 <th scope="col">Vehicle Number</th>
-                <th scope="col">Categry</th>
+                <th scope="col">Category</th>
                 <th scope="col">Registered Name</th>
+                <th scope="col">Place to contact</th>
                 <th scope="col">Fine</th>
               </tr>
             </thead>
@@ -50,6 +52,7 @@ class Vehicle extends Component {
                   <td>{st.vehiclenumber}</td>
                   <td>{st.category}</td>
                   <td>{st.registeredname}</td>
+                  <td>{st.place}</td>
                   <td>{st.fine}</td>
                 </tr>
               ))}

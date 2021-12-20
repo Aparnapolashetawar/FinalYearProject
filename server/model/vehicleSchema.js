@@ -13,6 +13,10 @@ const vehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  place: {
+    type: String,
+    required: true,
+  },
   fine: {
     type: Number,
     required: false,

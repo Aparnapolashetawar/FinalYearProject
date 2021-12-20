@@ -189,7 +189,7 @@ const Complaints = () => {
                     name="opponentName"
                     value={data.opponentName}
                     onChange={InputEvent}
-                    placeholder="Enter opponent's Name"
+                    placeholder="Enter opponent's Name if Known"
                   />
                 </div>
 

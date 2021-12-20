@@ -8,11 +8,8 @@ const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-<<<<<<< HEAD
-=======
 /*
 const multer = require("multer");
->>>>>>> f2a9c7c24527888e1cdfbc18fad6338f35a3f6b0
 
 //Image Storage
 const storage = multer.diskStorage({
@@ -164,9 +161,9 @@ router.post("/Logins", async (requ, resp) => {
 //Vehicle Info Below
 
 router.post("/AddVehicles", async (req, res) => {
-  const { vehiclenumber, category, registeredname, fine } = req.body;
+  const { vehiclenumber, category, registeredname, place, fine } = req.body;
 
-  if (!vehiclenumber || !category || !registeredname) {
+  if (!vehiclenumber || !category || !registeredname || !place) {
     return res.status(422).json({ error: "please fill the filds" });
   }
 
@@ -175,6 +172,7 @@ router.post("/AddVehicles", async (req, res) => {
       vehiclenumber,
       category,
       registeredname,
+      place,
       fine,
     });
 
