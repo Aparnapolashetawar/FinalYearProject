@@ -17,9 +17,18 @@ import Admin from "./policeUI/Admin";
 import Vehicle from "./Vehicle";
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
-
+import axios from "axios";
 export const UserContext = createContext();
+
 const Routing = () => {
+  // const [posts, setPosts] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get("/gallaries")
+  //     .then((res) => setPosts(res.data))
+  //     .catch((error) => console.log(error));
+  // });
+
   return (
     <Switch>
       <Route exact path="/" component={Home} />

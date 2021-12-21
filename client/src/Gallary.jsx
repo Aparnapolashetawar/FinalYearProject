@@ -1,21 +1,61 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import axios from "axios";
 
-const Gallary = ({ posts }) => {
-  const [gallary, setGallary] = useState([]);
-  return (
-    <>
+// const Gallary = () => {
+//   return (
+//     <>
+//       <h1>Gallary</h1>
+//
+
+//       {this.state.AddGallary.map((st, index) => (
+//         <tr>
+
+//           <td>{st.title}</td>
+
+//         </tr>
+//       ))}
+//     </>
+//   );
+// };
+
+class Gallary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      AddGallary: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getPosts();
+  }
+
+  getPosts() {
+    axios.get("http://localhost:5000/AddGallary").then((res) => {
+      if (res.data.success) {
+        this.setState({
+          AddGallary: res.data.AddGallary,
+        });
+        console.log("post:", this.state.AddGallary);
+      }
+    });
+  }
+  render() {
+    return (
       <div>
-        <h1>THIS IS Gallary PAGE</h1>
+        {this.state.AddGallary.map((post, key) => (
+          <div>
+            <p>{post.title}</p>
+            <p>{post.description}</p>
 
-        {/* {posts.map((gallary, key) => (
-          <div className="container" key={key}>
-            <img src="" alt="" />
-            <h2>{gallary.title}</h2>
-            <p>{gallary.description}</p>
+            <img src={`../../server/images/${post.image}`} />
           </div>
-        ))} */}
+        ))}
       </div>
-    </>
-  );
-};
+    );
+  }
+}
+
 export default Gallary;
+
+//Testing

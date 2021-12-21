@@ -60,9 +60,16 @@ const Complaints = () => {
 
     const store = await res.json();
 
+    const ph = ["1", "2", "3", "4", "5", "6"];
     if (res.status === 422 || !store) {
       window.alert("Invalid Registration");
       console.log("Invalid Registration");
+    } else if (data.phone.length !== 10) {
+      window.alert("Invalid Phone Number");
+    } else if (data.phone[0] in ph) {
+      window.alert("invalid phone Number");
+    } else if (data.pincode.length !== 6) {
+      window.alert("Invalid Pincode");
     } else {
       window.alert("Complaint Registered Successfully");
       console.log("Complaint Registered Successfully");
@@ -100,7 +107,7 @@ const Complaints = () => {
                     Phone No
                   </label>
                   <input
-                    type="Number"
+                    type="text"
                     className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="phone"

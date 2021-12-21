@@ -8,22 +8,8 @@ const router = express.Router();
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-/*
-const multer = require("multer");
-
-//Image Storage
-const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "/client/src/uploads/");
-  },
-  filename: (req, file, callback) => {
-    callback(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-*/
+const { v4: uuidv4 } = require("uuid");
+let path = require("path");
 
 //Publice Info below
 
@@ -181,27 +167,73 @@ router.get("/AddVehicle", (req, res) => {
 });
 
 //gallaries Details
-/*
-router.post("/gallaries", upload.single("gallaryImage"), (req, res) => {
-  const image = new Image({
-    title: req.body.title,
-    description: req.body.description,
-    gallaryImage: req.file.originalname,
-  });
-  image
-    .save()
-    .then(() => res.json("New Post Added!"))
-    .catch((err) => res.status(400).json(`error:${err}`));
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
 });
 
-//desplaying Gallaries
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
-router.get("/gallaries", (req, res) => {
-  Image.find()
-    .then((gallary) => res.json(gallary))
-    .catch((err) => res.status(400).json(`Error:${err}`));
+let upload = multer({ storage, fileFilter });
+
+router.route("/gallaries").post(upload.single("image"), (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  const image = req.file.filename;
+
+  const dataData = {
+    title,
+    description,
+    image,
+  };
+
+  const data = new Image(dataData);
+
+  data
+    .save()
+    .then(() => res.json("Image Added"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//displaying images gallary
+
+//photo = Image.find({}); add this line
+// photo.exec(function(err,data){
+//   if(err) throw err;
+//   res.render('upload-file',{title:'Upload File',records:data,success:success})
+// })
+
+/* add from this
+router.get("/AddGallary", function (req, res, next) {
+  photo.exec(function (err, data) {
+    if (err) throw err;
+    res.render("upload-file", {
+      title: "Upload File",
+      records: data,
+      success: "success",
+    });
+  });
 });
 */
+
+router.get("/AddGallary", (req, res) => {
+  Image.find().exec((err, AddGallary) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, AddGallary: AddGallary });
+  });
+});
 
 // logout functinality
 router.get("/policeUI/logout", (req, res) => {

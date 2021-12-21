@@ -9,11 +9,14 @@ const imagesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  gallaryImage: {
+  image: {
     type: String,
-    required: true,
   },
 });
 
+imagesSchema.methods.toJSON = function () {
+  const result = this.toObject();
+  return result;
+};
 const Image = mongoose.model("IMAGE", imagesSchema);
 module.exports = Image;

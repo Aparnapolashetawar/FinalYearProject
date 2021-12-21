@@ -8,10 +8,6 @@ const cors = require("cors");
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
 
-//const Public = require("./model/publicSchema");
-//const Police=require('./model/policeSchema');
-// const Image = require("./model/imageSchema");
-
 app.use(express.json());
 app.use(bodyparser.json());
 app.use(cors());
@@ -25,9 +21,6 @@ const middleware = (req, res, next) => {
   next();
 };
 
-// app.get("/", (req, res) => {
-//   res.send("hello world from the server as app");
-// });
 app.get("/About", middleware, (req, res) => {
   res.send("hello About from the server");
 });

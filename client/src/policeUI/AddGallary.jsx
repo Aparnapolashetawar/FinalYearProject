@@ -2,31 +2,44 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const AddGallary = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    image: "",
+  });
 
-  const onChangeFile = (e) => {
-    setFileName(e.target.files[0]);
-  };
-
-  const changeOnClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("gallaryImage", fileName);
-
-    setTitle("");
-    setDescription("");
+    formData.append("image", data.image);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
 
     axios
       .post("/gallaries", formData)
-      .then(alert("Posted Sussessfully"))
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleChange = (e) => {
+    //   const { name, value } = e.target;
+
+    //   setData((preVal) => {
+    //     return {
+    //       ...preVal,
+    //       [name]: value,
+    //     };
+    //   });
+    // };
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleImage = (e) => {
+    setData({ ...data, image: e.target.files[0] });
   };
 
   return (
@@ -36,15 +49,16 @@ const AddGallary = () => {
           <h1>Post Images</h1>
           <br />
 
-          <form onSubmit={changeOnClick} encType="multipart/form-data">
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div className="form-group">
               <label htmlFor="title" className="form-label">
                 Title
               </label>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                name="title"
+                value={data.title}
+                onChange={handleChange}
                 className="form-control"
                 placeholder="Title"
               />
@@ -55,8 +69,9 @@ const AddGallary = () => {
                 Description
               </label>
               <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                name="description"
+                value={data.description}
+                onChange={handleChange}
                 className="form-control"
                 rows="3"
               ></textarea>
@@ -66,9 +81,10 @@ const AddGallary = () => {
               <label htmlFor="file">Choose File</label>
               <input
                 type="file"
-                filename="gallaryImage"
+                accept=".png, .jpg, .jpeg"
+                name="image"
                 className="form-control-file"
-                onChange={onChangeFile}
+                onChange={handleImage}
               />
             </div>
 
@@ -82,3 +98,5 @@ const AddGallary = () => {
   );
 };
 export default AddGallary;
+
+//Testing
