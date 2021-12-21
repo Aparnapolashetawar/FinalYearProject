@@ -5,6 +5,7 @@ const Complaints = () => {
   const history = useHistory();
   const [data, setData] = useState({
     fullname: "",
+    adhar: "",
     phone: "",
     email: "",
     address: "",
@@ -30,6 +31,7 @@ const Complaints = () => {
     e.preventDefault();
     const {
       fullname,
+      adhar,
       phone,
       email,
       address,
@@ -47,6 +49,7 @@ const Complaints = () => {
       },
       body: JSON.stringify({
         fullname,
+        adhar,
         phone,
         email,
         address,
@@ -98,6 +101,22 @@ const Complaints = () => {
                     value={data.fullname}
                     onChange={InputEvent}
                     placeholder="Enter Your Name"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    Adhar No
+                  </label>
+                  <input
+                    type="Number"
+                    className="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="adhar"
+                    value={data.adhar}
+                    onChange={InputEvent}
+                    placeholder="Adhar Number"
                     required
                   />
                 </div>
@@ -177,7 +196,7 @@ const Complaints = () => {
                     name="opponentName"
                     value={data.opponentName}
                     onChange={InputEvent}
-                    placeholder="Enter opponent's Name"
+                    placeholder="Enter opponent's Name if Known"
                   />
                 </div>
 

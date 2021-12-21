@@ -7,10 +7,8 @@ const year = d.getFullYear();
 const Footer = () => {
   return (
     <>
-      <div class="navbar fixed-bottom pm">
-        <Helpline />
-      </div>
-      <footer className="footer mt-auto py-3 bg-dark navbar fixed-bottom ">
+      <Helpline />
+      <footer className="footer mt-auto py-3 bg-dark navbar ">
         <div className="container ">
           <span className="text-muted cn">
             <center>

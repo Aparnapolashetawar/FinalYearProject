@@ -8,6 +8,7 @@ const AddVehicle = () => {
     vehiclenumber: "",
     category: "",
     registeredname: "",
+    place: "",
     fine: "",
   });
 
@@ -24,7 +25,7 @@ const AddVehicle = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { vehiclenumber, category, registeredname, fine } = data;
+    const { vehiclenumber, category, registeredname, place, fine } = data;
 
     const res = await fetch("/AddVehicles", {
       method: "POST",
@@ -35,6 +36,7 @@ const AddVehicle = () => {
         vehiclenumber,
         category,
         registeredname,
+        place,
         fine,
       }),
     });
@@ -97,6 +99,20 @@ const AddVehicle = () => {
                 id="exampleFormControlInput1"
                 aria-describedby="emailHelp"
                 placeholder="registered Name"
+                onChange={InputEvent}
+                required
+              />
+            </div>
+            <div class="form-group a  ">
+              <label for="exampleFormControlInput1">Place for Contact</label>
+              <input
+                type="text"
+                class="form-control"
+                name="place"
+                value={data.place}
+                id="exampleFormControlInput1"
+                aria-describedby="emailHelp"
+                placeholder="Visit for more details"
                 onChange={InputEvent}
                 required
               />

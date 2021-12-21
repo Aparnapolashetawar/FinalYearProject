@@ -37,6 +37,7 @@ class ShowComplaints extends Component {
               <th scope="col">Sr.No.</th>
 
               <th scope="col">FullName</th>
+              <th scope="col">Adhar</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
               <th scope="col">Address</th>
@@ -52,6 +53,7 @@ class ShowComplaints extends Component {
               <tr>
                 <th>{index + 1}</th>
                 <td>{st.fullname}</td>
+                <td>{st.adhar}</td>
                 <td>{st.email}</td>
                 <td>{st.phone}</td>
                 <td>{st.address}</td>

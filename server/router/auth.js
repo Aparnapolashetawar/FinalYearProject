@@ -26,6 +26,7 @@ router.get("/Complaints", (req, res) => {
 router.post("/Complaint", async (req, res) => {
   const {
     fullname,
+    adhar,
     phone,
     email,
     address,
@@ -36,13 +37,22 @@ router.post("/Complaint", async (req, res) => {
     complaint,
   } = req.body;
 
-  if (!fullname || !phone || !email || !address || !pincode || !complaint) {
+  if (
+    !fullname ||
+    !adhar ||
+    !phone ||
+    !email ||
+    !address ||
+    !pincode ||
+    !complaint
+  ) {
     return res.status(422).json({ error: "please fill the filds" });
   }
 
   try {
     const public = new Public({
       fullname,
+      adhar,
       phone,
       email,
       address,
@@ -137,9 +147,9 @@ router.post("/Logins", async (requ, resp) => {
 //Vehicle Info Below
 
 router.post("/AddVehicles", async (req, res) => {
-  const { vehiclenumber, category, registeredname, fine } = req.body;
+  const { vehiclenumber, category, registeredname, place, fine } = req.body;
 
-  if (!vehiclenumber || !category || !registeredname) {
+  if (!vehiclenumber || !category || !registeredname || !place) {
     return res.status(422).json({ error: "please fill the filds" });
   }
 
@@ -148,6 +158,7 @@ router.post("/AddVehicles", async (req, res) => {
       vehiclenumber,
       category,
       registeredname,
+      place,
       fine,
     });
 
