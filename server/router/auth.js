@@ -33,7 +33,7 @@ router.post("/Complaint", async (req, res) => {
     pincode,
     opponentName,
     opponentAddress,
-    opponentPincode,
+
     complaint,
   } = req.body;
 
@@ -48,6 +48,16 @@ router.post("/Complaint", async (req, res) => {
   ) {
     return res.status(422).json({ error: "please fill the filds" });
   }
+  const ph = ["1", "2", "3", "4", "5", "6"];
+  if (adhar.length !== 12) {
+    return res.status(422).json({ error: "aadhar invalid" });
+  } else if (phone.length !== 10) {
+    return res.status(422).json({ error: "phone invalid" });
+  } else if (phone[0] in ph) {
+    return res.status(422).json({ error: "phone invalid" });
+  } else if (pincode.length !== 6) {
+    return res.status(422).json({ error: "pincode invalid" });
+  }
 
   try {
     const public = new Public({
@@ -59,7 +69,7 @@ router.post("/Complaint", async (req, res) => {
       pincode,
       opponentName,
       opponentAddress,
-      opponentPincode,
+
       complaint,
     });
 

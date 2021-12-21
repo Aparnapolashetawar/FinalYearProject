@@ -34,10 +34,7 @@ const publicSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  opponentPincode: {
-    type: Number,
-    required: false,
-  },
+
   complaint: {
     type: String,
     required: true,

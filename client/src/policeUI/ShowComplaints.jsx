@@ -44,7 +44,7 @@ class ShowComplaints extends Component {
               <th scope="col">Pincode</th>
               <th scope="col">OpponentName</th>
               <th scope="col">OpponentAddress</th>
-              <th scope="col">OpponentPincode</th>
+
               <th scope="col">Complaint</th>
             </tr>
           </thead>
@@ -60,7 +60,7 @@ class ShowComplaints extends Component {
                 <td>{st.pincode}</td>
                 <td>{st.opponentName}</td>
                 <td>{st.opponentAddress}</td>
-                <td>{st.opponentPincode}</td>
+
                 <td>{st.complaint}</td>
               </tr>
             ))}

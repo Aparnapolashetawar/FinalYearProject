@@ -56,23 +56,18 @@ const Complaints = () => {
         pincode,
         opponentName,
         opponentAddress,
-        opponentPincode,
+
         complaint,
       }),
     });
 
     const store = await res.json();
 
-    const ph = ["1", "2", "3", "4", "5", "6"];
+    //const ph = ["1", "2", "3", "4", "5", "6"];
+
     if (res.status === 422 || !store) {
-      window.alert("Invalid Registration");
-      console.log("Invalid Registration");
-    } else if (data.phone.length !== 10) {
-      window.alert("Invalid Phone Number");
-    } else if (data.phone[0] in ph) {
-      window.alert("invalid phone Number");
-    } else if (data.pincode.length !== 6) {
-      window.alert("Invalid Pincode");
+      window.alert("Invalid credentials");
+      console.log("Invalid credentials");
     } else {
       window.alert("Complaint Registered Successfully");
       console.log("Complaint Registered Successfully");
@@ -212,21 +207,6 @@ const Complaints = () => {
                     value={data.opponentAddress}
                     onChange={InputEvent}
                     placeholder="Enter Address if known"
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label for="exampleFormControlInput1" className="form-label">
-                    Opponent Pin Code
-                  </label>
-                  <input
-                    type="Number"
-                    className="form-control border border-info"
-                    id="exampleFormControlInput1"
-                    name="opponentPincode"
-                    value={data.opponentPincode}
-                    onChange={InputEvent}
-                    placeholder="Enter Pin Code if known"
                   />
                 </div>
 
