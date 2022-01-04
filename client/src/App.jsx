@@ -21,20 +21,20 @@ import axios from "axios";
 export const UserContext = createContext();
 
 const Routing = () => {
-  // const [posts, setPosts] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get("/gallaries")
-  //     .then((res) => setPosts(res.data))
-  //     .catch((error) => console.log(error));
-  // });
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/AddGallaries")
+      .then((res) => setPosts(res.data))
+      .catch((error) => console.log(error));
+  });
 
   return (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/Complaints" component={Complaints} />
       <Route exact path="/policeUI/ShowComplaints" component={ShowComplaints} />
-      <Route exact path="/Gallary" component={Gallary} />
+
       <Route exact path="/policeUI/AddGallary" component={AddGallary} />
       <Route exact path="/About" component={About} />
 
@@ -43,7 +43,7 @@ const Routing = () => {
       <Route exact path="/policeUI/Admin" component={Admin} />
       <Route exact path="/Login" component={Login} />
       <Route exact path="/policeUI/Logout" component={Logout} />
-
+      <Route to="/Gallary" render={() => <Gallary posts={posts} />} />
       <Redirect to="/" />
     </Switch>
   );

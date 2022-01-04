@@ -14,9 +14,9 @@ const imagesSchema = new mongoose.Schema({
   },
 });
 
-imagesSchema.methods.toJSON = function () {
-  const result = this.toObject();
-  return result;
-};
+// imagesSchema.methods.toJSON = function () {
+//   const result = this.toObject();
+//   return result;
+// };
 const Image = mongoose.model("IMAGE", imagesSchema);
 module.exports = Image;

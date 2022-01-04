@@ -43,8 +43,8 @@ app.get("/AddVehicles", (req, res) => {
   res.send("hello police from the server");
 });
 
-app.get("/gallaries", (req, res) => {
-  res.send("hello police from the server");
+app.get("/AddGallaries", (req, res) => {
+  res.send("hello gal from the server");
 });
 /*app.get("/policeUI/AddGallary", (req, res) => {
   res.send("hello policeui addgallary from the server");

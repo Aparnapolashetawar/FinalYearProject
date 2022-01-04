@@ -189,72 +189,46 @@ router.get("/AddVehicle", (req, res) => {
 
 //gallaries Details
 
+//gallary Storage
+
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "images");
+  destination: (req, file, callback) => {
+    callback(null, "../client/public/uploads/");
   },
-  filename: function (req, file, cb) {
-    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
   },
 });
 
-const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
-  if (allowedFileTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
+const upload = multer({ storage: storage });
 
-let upload = multer({ storage, fileFilter });
+//displaying details of gallaries
+router.get("/AddGallaries", (req, res) => {
+  Image.find()
+    .then((gal) => res.json(gal))
+    .catch((err) => res.status(400).json(`Error: ${err}`));
+});
 
-router.route("/gallaries").post(upload.single("image"), (req, res) => {
-  const title = req.body.title;
-  const description = req.body.description;
-  const image = req.file.filename;
-
-  const dataData = {
-    title,
-    description,
-    image,
-  };
-
-  const data = new Image(dataData);
-
-  data
+//adding gallary details
+router.post("/AddGallaries", upload.single("image"), (req, res) => {
+  const image = new Image({
+    title: req.body.title,
+    description: req.body.description,
+    image: req.file.originalname,
+  });
+  image
     .save()
-    .then(() => res.json("Image Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.json("The new Image added"))
+    .catch((err) => res.status(400).json(`Error ${err}`));
 });
 
-//displaying images gallary
-
-//photo = Image.find({}); add this line
-// photo.exec(function(err,data){
-//   if(err) throw err;
-//   res.render('upload-file',{title:'Upload File',records:data,success:success})
-// })
-
-/* add from this
-router.get("/AddGallary", function (req, res, next) {
-  photo.exec(function (err, data) {
-    if (err) throw err;
-    res.render("upload-file", {
-      title: "Upload File",
-      records: data,
-      success: "success",
-    });
-  });
-});
-*/
-
-router.get("/AddGallary", (req, res) => {
-  Image.find().exec((err, AddGallary) => {
-    if (err) return res.status(400).json({ success: false, err });
-    return res.status(200).json({ success: true, AddGallary: AddGallary });
-  });
-});
+//find by id
+// router.get("/:id", (req, res) => {
+//   Image.findById(req.params.id)
+//     .then((gal) => res.json(gal))
+//     .catch((err) => res.status(400).json(`Error:${err}`));
+// });
 
 // logout functinality
 router.get("/policeUI/logout", (req, res) => {
