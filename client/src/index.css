@@ -198,3 +198,51 @@
   margin: 20px;
   font-size: 20px;
 }
+
+/*cards*/
+
+.main {
+  margin: 2%;
+}
+
+.cards {
+  width: 50%;
+
+  box-shadow: 2px 2px 20px black;
+  border-radius: 5px;
+  margin: 2%;
+  margin-left: 25%;
+}
+
+.images img {
+  width: 100%;
+
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.title {
+  text-align: center;
+
+  padding: 10px;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #0f71b3;
+}
+
+.des {
+  padding: 3px;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.ht1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  margin-left: 34%;
+  font-size: 500%;
+  color: crimson;
+}

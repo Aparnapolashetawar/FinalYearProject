@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <Helpline />
-      <footer className="footer mt-auto py-3 bg-dark navbar ">
+      <footer className="footer mt-auto py-3 bg-dark navbar foot">
         <div className="container ">
           <span className="text-muted cn">
             <center>

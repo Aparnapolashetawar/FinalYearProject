@@ -24,6 +24,7 @@ const AddGallary = () => {
 
     setTitle("");
     setDescription("");
+    setFileName("");
 
     axios
       .post("/AddGallaries", formData)
