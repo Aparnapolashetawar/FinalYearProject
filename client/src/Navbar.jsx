@@ -25,7 +25,7 @@ const Navbar = () => {
               className="nav-link"
               to="/policeUI/ShowComplaints"
             >
-              ShowComplaints
+              Complaints
             </NavLink>
           </li>
           <li className="nav-item">
@@ -34,7 +34,7 @@ const Navbar = () => {
               className="nav-link"
               to="/policeUI/AddGallary"
             >
-              AddGallary
+              Gallary
             </NavLink>
           </li>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
               className="nav-link"
               to="/policeUI/AddVehicle"
             >
-              AddVehicle
+              Vehicle
             </NavLink>
           </li>
           <li className="nav-item">

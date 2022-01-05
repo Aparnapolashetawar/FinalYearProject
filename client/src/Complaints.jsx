@@ -79,7 +79,6 @@ const Complaints = () => {
     <>
       <div className="image">
         <h1>Register Complaint Here</h1>
-
         <div className="container contact_div">
           <div className="row ">
             <div className="col-md-6 col-10 mx-auto solution">
