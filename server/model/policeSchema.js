@@ -19,6 +19,7 @@ const policeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   tokens: [
     {
       token: {

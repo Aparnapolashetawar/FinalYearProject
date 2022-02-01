@@ -9,6 +9,7 @@ const vehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   registeredname: {
     type: String,
     required: true,

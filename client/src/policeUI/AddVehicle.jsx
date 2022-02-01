@@ -7,6 +7,7 @@ const AddVehicle = () => {
   const [data, setData] = useState({
     vehiclenumber: "",
     category: "",
+
     registeredname: "",
     place: "",
     fine: "",
@@ -35,6 +36,7 @@ const AddVehicle = () => {
       body: JSON.stringify({
         vehiclenumber,
         category,
+
         registeredname,
         place,
         fine,
@@ -103,6 +105,7 @@ const AddVehicle = () => {
                 required
               />
             </div>
+
             <div class="form-group a  ">
               <label for="exampleFormControlInput1">Place for Contact</label>
               <input

@@ -20,10 +20,19 @@ class ShowComplaints extends Component {
           Complaints: res.data.Complaints,
         });
         console.log("post:", this.state.Complaints);
+        // console.log("post select:", this.state.Complaints[0][1]);
+        console.log("post1:", this.state.Complaints[0]);
       }
     });
   }
+
   render() {
+    // {
+    //   this.state.Complaints.map((d) => {
+    //     return { select: false,fullname:d.fullname,adhar:d.adhar,email:d.email,phone:d.phone,address:d.address,pincode:d.pincode,opponentName:d.opponentName,opponentAddress=d.opponentAddress,complaint:d.complaint };
+    //   });
+    // }
+
     return (
       <div class="whole3">
         <h1 class="acs"> All Complaints </h1>
@@ -60,7 +69,6 @@ class ShowComplaints extends Component {
                 <td>{st.pincode}</td>
                 <td>{st.opponentName}</td>
                 <td>{st.opponentAddress}</td>
-
                 <td>{st.complaint}</td>
               </tr>
             ))}

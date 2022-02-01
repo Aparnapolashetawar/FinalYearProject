@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import Polices from "./Polices";
 const Admin = () => {
   const history = useHistory();
   const [data, setData] = useState({
@@ -135,6 +135,7 @@ const Admin = () => {
                 </div>
               </form>
             </div>
+            <Polices />
           </div>
         </div>
       </div>

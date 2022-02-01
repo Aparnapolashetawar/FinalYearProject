@@ -15,6 +15,8 @@ import AddVehicle from "./policeUI/AddVehicle";
 import ShowComplaints from "./policeUI/ShowComplaints";
 import Admin from "./policeUI/Admin";
 import Vehicle from "./Vehicle";
+
+import EditPost from "./policeUI/EditPost";
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
 import axios from "axios";
@@ -41,9 +43,12 @@ const Routing = () => {
       <Route exact path="/Vehicle" component={Vehicle} />
       <Route exact path="/policeUI/AddVehicle" component={AddVehicle} />
       <Route exact path="/policeUI/Admin" component={Admin} />
+      <Route exact path="/edit/:id" component={EditPost} />
       <Route exact path="/Login" component={Login} />
       <Route exact path="/policeUI/Logout" component={Logout} />
+
       <Route to="/Gallary" render={() => <Gallary posts={posts} />} />
+
       <Redirect to="/" />
     </Switch>
   );

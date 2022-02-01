@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const Public = require("../model/publicSchema");
+
 const Image = require("../model/imagesSchema");
 const Police = require("../model/policeSchema");
 const VehicleData = require("../model/vehicleSchema");
@@ -33,7 +34,6 @@ router.post("/Complaint", async (req, res) => {
     pincode,
     opponentName,
     opponentAddress,
-
     complaint,
   } = req.body;
 
@@ -82,6 +82,8 @@ router.post("/Complaint", async (req, res) => {
 
 //Admin Info Below
 
+//Regestration of polices
+
 router.post("/Admins", async (request, responce) => {
   const { policeName, policeEmail, policePassword, cpolicePassword } =
     request.body;
@@ -110,6 +112,48 @@ router.post("/Admins", async (request, responce) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+//Police Info Display
+router.get("/Admin", (req, res) => {
+  Police.find().exec((err, Admin) => {
+    if (err) return res.status(422).json({ success: false, err });
+    return res.status(200).json({ success: true, Admin: Admin });
+  });
+});
+
+//Update Query
+router.put("/update/:id", (req, res) => {
+  Police.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    (err, Admin) => {
+      if (err) return res.sendStatus(400).json({ success: false, err });
+      return res.status(200).json({ success: true });
+    }
+  );
+});
+
+//Delete Query
+router.delete("/delete/:id", (req, res) => {
+  Police.findByIdAndRemove(req.params.id).exec((err, deleteItem) => {
+    if (err) {
+      res.send(err);
+    }
+    return res.json(deleteItem);
+  });
+});
+
+//details of id
+
+router.get("/detail/:id", (req, res) => {
+  let id = req.params.id;
+  Police.findById(id, function (err, post) {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, post });
+  });
 });
 
 //Police Login Route
@@ -167,6 +211,7 @@ router.post("/AddVehicles", async (req, res) => {
     const vehicledata = new VehicleData({
       vehiclenumber,
       category,
+
       registeredname,
       place,
       fine,

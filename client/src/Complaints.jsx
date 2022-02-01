@@ -14,6 +14,7 @@ const Complaints = () => {
     opponentAddress: "",
     opponentPincode: "",
     complaint: "",
+    select: "",
   });
 
   const InputEvent = (event) => {
@@ -40,6 +41,7 @@ const Complaints = () => {
       opponentAddress,
       opponentPincode,
       complaint,
+      select,
     } = data;
 
     const res = await fetch("/Complaint", {
@@ -58,6 +60,7 @@ const Complaints = () => {
         opponentAddress,
 
         complaint,
+        select,
       }),
     });
 
@@ -246,4 +249,5 @@ const Complaints = () => {
     </>
   );
 };
+
 export default Complaints;
