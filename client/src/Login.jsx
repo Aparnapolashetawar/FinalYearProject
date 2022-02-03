@@ -54,7 +54,7 @@ const Login = () => {
           <h1>Login</h1>
           <form method="POST">
             <div class="form-group a  ">
-              <label for="exampleFormControlInput1">Email address</label>
+              <label for="exampleFormControlInput1">Username</label>
               <input
                 type="email"
                 class="form-control"

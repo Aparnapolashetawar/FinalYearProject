@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 
 const Complaints = () => {
   const history = useHistory();
+  const [formerrors, setformerrors] = useState({});
+  const [issubmit, setissubmit] = useState(false);
   const [data, setData] = useState({
     fullname: "",
     adhar: "",
@@ -30,6 +32,8 @@ const Complaints = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
+    setformerrors(validate(data));
+    setissubmit(true);
     const {
       fullname,
       adhar,
@@ -58,15 +62,12 @@ const Complaints = () => {
         pincode,
         opponentName,
         opponentAddress,
-
         complaint,
         select,
       }),
     });
 
     const store = await res.json();
-
-    //const ph = ["1", "2", "3", "4", "5", "6"];
 
     if (res.status === 422 || !store) {
       window.alert("Invalid credentials");
@@ -76,6 +77,46 @@ const Complaints = () => {
       console.log("Complaint Registered Successfully");
       history.push("/");
     }
+  };
+
+  const validate = (values) => {
+    const errors = {};
+    const regex = /\S+@\S+\.\S+/;
+    const ph = ["1", "2", "3", "4", "5", "6"];
+    if (!values.fullname) {
+      errors.fullname = "Name is required!";
+    }
+    if (!values.adhar) {
+      errors.adhar = "adhar no is required!";
+    } else if (values.adhar.length != 12) {
+      errors.adhar = "adhar no must contain 12 digits";
+    }
+
+    if (!values.phone) {
+      errors.phone = "phone no is required!";
+    } else if (values.phone.length != 10) {
+      errors.phone = "phone no must be 10 digit number";
+    } else if (values.phone[0] in ph) {
+      errors.phone = "phone no starting with digits(7,8,9) are only acceptable";
+    }
+
+    if (!values.email) {
+      errors.email = "email address is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "This is not a valid email format";
+    }
+    if (!values.address) {
+      errors.address = "permanent address is required!";
+    }
+    if (!values.pincode) {
+      errors.pincode = "pincode is required!";
+    } else if (values.pincode.length != 6) {
+      errors.pincode = "pincode must include 6 digits";
+    }
+    if (!values.complaint) {
+      errors.complaint = "complaint is required!";
+    }
+    return errors;
   };
 
   return (
@@ -100,6 +141,7 @@ const Complaints = () => {
                     placeholder="Enter Your Name"
                     required
                   />
+                  <p className="error">{formerrors.fullname}</p>
                 </div>
 
                 <div className="mb-3">
@@ -116,6 +158,7 @@ const Complaints = () => {
                     placeholder="Adhar Number"
                     required
                   />
+                  <p className="error">{formerrors.adhar}</p>
                 </div>
 
                 <div className="mb-3">
@@ -123,7 +166,7 @@ const Complaints = () => {
                     Phone No
                   </label>
                   <input
-                    type="text"
+                    type="Number"
                     className="form-control border border-info"
                     id="exampleFormControlInput1"
                     name="phone"
@@ -132,6 +175,7 @@ const Complaints = () => {
                     placeholder="Mobile Number"
                     required
                   />
+                  <p className="error">{formerrors.phone}</p>
                 </div>
 
                 <div className="mb-3">
@@ -148,6 +192,7 @@ const Complaints = () => {
                     placeholder="name@FullName example.com"
                     required
                   />
+                  <p className="error">{formerrors.email}</p>
                 </div>
 
                 <div className="mb-3">
@@ -164,6 +209,7 @@ const Complaints = () => {
                     placeholder="address"
                     required
                   />
+                  <p className="error">{formerrors.address}</p>
                 </div>
 
                 <div className="mb-3">
@@ -180,6 +226,7 @@ const Complaints = () => {
                     placeholder="Pin Code"
                     required
                   />
+                  <p className="error">{formerrors.pincode}</p>
                 </div>
 
                 <div className="mb-3 ">
@@ -229,6 +276,7 @@ const Complaints = () => {
                     placeholder="Add Complaint"
                     required
                   ></textarea>
+                  <p className="error">{formerrors.complaint}</p>
                 </div>
 
                 <div className="col-12 mb-3">
