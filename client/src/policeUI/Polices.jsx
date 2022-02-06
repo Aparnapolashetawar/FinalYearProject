@@ -42,7 +42,7 @@ class Polices extends Component {
                 <th scope="col">Sr.No.</th>
                 <th scope="col">Police Name</th>
                 <th scope="col">Police Email</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -52,10 +52,6 @@ class Polices extends Component {
                   <td colspan="1">{post.policeName}</td>
                   <td>{post.policeEmail}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${post._id}`}>
-                      <i className="fas fa-edit"></i>&nbsp;Edit
-                    </a>
-                    &nbsp;
                     <a
                       className="btn btn-danger"
                       href="#"

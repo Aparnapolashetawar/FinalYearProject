@@ -13,6 +13,7 @@ import Logout from "./policeUI/Logout";
 import AddGallary from "./policeUI/AddGallary";
 import AddVehicle from "./policeUI/AddVehicle";
 import ShowComplaints from "./policeUI/ShowComplaints";
+
 import Admin from "./policeUI/Admin";
 import Vehicle from "./Vehicle";
 
@@ -42,10 +43,11 @@ const Routing = () => {
 
       <Route exact path="/Vehicle" component={Vehicle} />
       <Route exact path="/policeUI/AddVehicle" component={AddVehicle} />
-      <Route exact path="/policeUI/Admin" component={Admin} />
+
       <Route exact path="/edit/:id" component={EditPost} />
       <Route exact path="/Login" component={Login} />
       <Route exact path="/policeUI/Logout" component={Logout} />
+      <Route exact path="/policeUI/Admin" component={Admin} />
 
       <Route to="/Gallary" render={() => <Gallary posts={posts} />} />
 

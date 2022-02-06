@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import Polices from "./Polices";
 const Admin = () => {
   const history = useHistory();
+
   const [data, setData] = useState({
     policeName: "",
     policeEmail: "",
     policePassword: "",
     cpolicePassword: "",
+    adminkey: "",
   });
 
   const InputEvent = (event) => {
@@ -23,7 +25,14 @@ const Admin = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { policeName, policeEmail, policePassword, cpolicePassword } = data;
+
+    const {
+      policeName,
+      policeEmail,
+      policePassword,
+      cpolicePassword,
+      adminkey,
+    } = data;
 
     const res = await fetch("/Admins", {
       method: "POST",
@@ -35,6 +44,7 @@ const Admin = () => {
         policeEmail,
         policePassword,
         cpolicePassword,
+        adminkey,
       }),
     });
 
@@ -102,7 +112,7 @@ const Admin = () => {
                     name="policePassword"
                     value={data.policePassword}
                     onChange={InputEvent}
-                    placeholder="name@FullName example.com"
+                    placeholder="password"
                     required
                   />
                 </div>
@@ -118,7 +128,23 @@ const Admin = () => {
                     name="cpolicePassword"
                     value={data.cpolicePassword}
                     onChange={InputEvent}
-                    placeholder="name@FullName example.com"
+                    placeholder="password"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    Admin Key
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control border border-info"
+                    id="exampleFormControlInput1"
+                    name="adminkey"
+                    value={data.adminkey}
+                    onChange={InputEvent}
+                    placeholder="Admin Key"
                     required
                   />
                 </div>

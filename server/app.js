@@ -32,6 +32,10 @@ app.get("/Logins", (req, res) => {
   res.send("hello Login from the server");
 });
 
+app.get("/Verify", (req, res) => {
+  res.send("hello Admin verify from the server");
+});
+
 app.get("/Admins", (req, res) => {
   res.send("hello Admin from the server");
 });

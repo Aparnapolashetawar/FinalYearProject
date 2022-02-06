@@ -82,13 +82,41 @@ router.post("/Complaint", async (req, res) => {
 
 //Admin Info Below
 
+//Admin Verification
+
+router.post("/Verify", async (request, responce) => {
+  const { adminkey } = request.body;
+
+  if (!adminkey) {
+    return responce.status(422).json({ error: "please fill the filds" });
+  }
+
+  try {
+    if (adminkey != `admin`) {
+      return responce.status(422).json({ error: "Invalid Admin Key" });
+    }
+
+    responce.status(201).json({ message: "Admin login successfully" });
+    //request.session.redirectTo = "/PoliceUI/Admin";
+    //return responce.redirect("/PoliceUI/Admin");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 //Regestration of polices
 
 router.post("/Admins", async (request, responce) => {
-  const { policeName, policeEmail, policePassword, cpolicePassword } =
+  const { policeName, policeEmail, policePassword, cpolicePassword, adminkey } =
     request.body;
 
-  if (!policeEmail || !policePassword || !cpolicePassword || !policeName) {
+  if (
+    !policeEmail ||
+    !policePassword ||
+    !cpolicePassword ||
+    !policeName ||
+    !adminkey
+  ) {
     return responce.status(422).json({ error: "please fill the filds" });
   }
 
@@ -98,6 +126,8 @@ router.post("/Admins", async (request, responce) => {
       return responce.status(422).json({ error: "Email already Exist" });
     } else if (policePassword != cpolicePassword) {
       return responce.status(422).json({ error: "Password not matching" });
+    } else if (adminkey != `admin`) {
+      return responce.status(422).json({ error: "Invalid Admin Key" });
     } else {
       const police = new Police({
         policeName,
@@ -131,6 +161,7 @@ router.put("/update/:id", (req, res) => {
     },
     (err, Admin) => {
       if (err) return res.sendStatus(400).json({ success: false, err });
+
       return res.status(200).json({ success: true });
     }
   );
