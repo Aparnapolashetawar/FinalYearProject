@@ -32,7 +32,7 @@ const Login = () => {
     } else {
       dispatch({ type: "USER", payload: true });
       window.alert("login Successful");
-      history.push("/", { replace: true });
+      history.push("/Homes", { replace: true });
     }
   };
 

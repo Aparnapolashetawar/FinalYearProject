@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Complaints from "./Complaints";
 import Gallary from "./Gallary";
 import About from "./About";
+import Homes from "./Homes";
 import Login from "./Login";
 import Logout from "./policeUI/Logout";
 import AddGallary from "./policeUI/AddGallary";
@@ -34,6 +35,7 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route exact path="/Homes" component={Homes} />
       <Route exact path="/Complaints" component={Complaints} />
       <Route exact path="/policeUI/ShowComplaints" component={ShowComplaints} />
 

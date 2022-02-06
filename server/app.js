@@ -50,6 +50,7 @@ app.get("/AddGallaries", (req, res) => {
 /*app.get("/policeUI/AddGallary", (req, res) => {
   res.send("hello policeui addgallary from the server");
 });*/
+
 console.log("yess");
 app.listen(PORT, () => {
   console.log(`server is running and having port number ${PORT}`);

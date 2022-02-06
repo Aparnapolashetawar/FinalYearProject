@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const Public = require("../model/publicSchema");
-
+const authenticate = require("../middleware/authenticate");
 const Image = require("../model/imagesSchema");
 const Police = require("../model/policeSchema");
 const VehicleData = require("../model/vehicleSchema");
@@ -276,9 +276,15 @@ router.post("/AddGallaries", upload.single("image"), (req, res) => {
 // });
 
 // logout functinality
+
 router.get("/policeUI/logout", (req, res) => {
   console.log("helwww logout");
   res.clearCookie("jwtoken", { path: "/" });
   res.status(200).send("user logout");
 });
 module.exports = router;
+
+router.post("/Logins", authenticate, (req, res) => {
+  console.log("hii Homes");
+  res.send(req.rootuser);
+});
