@@ -315,7 +315,12 @@ router.get("/policeUI/logout", (req, res) => {
 });
 module.exports = router;
 
-router.post("/Logins", authenticate, (req, res) => {
-  console.log("hii Homes");
-  res.send(req.rootuser);
+// router.post("/Logins", authenticate, (req, res) => {
+//   console.log("hii Homes");
+//   res.send(req.rootuser);
+// });
+
+router.get("/Home", authenticate, (req, res) => {
+  console.log("Hello My police Home");
+  res.send(req.rootPolice);
 });

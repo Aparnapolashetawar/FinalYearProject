@@ -50,9 +50,7 @@ const Routing = () => {
       <Route exact path="/Login" component={Login} />
       <Route exact path="/policeUI/Logout" component={Logout} />
       <Route exact path="/policeUI/Admin" component={Admin} />
-
       <Route to="/Gallary" render={() => <Gallary posts={posts} />} />
-
       <Redirect to="/" />
     </Switch>
   );

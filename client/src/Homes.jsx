@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./index.css";
 const mongoose = require("mongoose");
 
 const Homes = () => {
-  const [userName, setuserName] = useState("");
+  const history = useHistory();
+  const [userData, setUserData] = useState("");
   const userHomepage = async () => {
     try {
-      const res = await fetch("/Logins", {
-        method: "POST",
+      const res = await fetch("/Home", {
+        method: "GET",
         headers: {
-          "content-type": "application/json",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
+        credentials: "include",
       });
       const data = await res.json();
       console.log(data);
-      setuserName(data.loginEmail);
-      console.log(userName);
+      setUserData(data);
+      console.log("Username=", userData.policeName);
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
       }
     } catch (err) {
       console.log(err);
+      //history.push("/about");
     }
   };
   useEffect(() => {
@@ -30,31 +35,33 @@ const Homes = () => {
 
   return (
     <>
-      <div className="wholee1">
-        <div
-          className="igclass"
-          style={{
-            backgroundColor: "black",
-            opacity: "0.5",
-            borderRadius: "15px",
-            bottom: "125px",
-          }}
-        >
+      <form method="GET">
+        <div className="wholee1">
           <div
+            className="igclass"
             style={{
-              marginTop: "60px",
-              marginLeft: "40px",
+              backgroundColor: "black",
+              opacity: "0.5",
+              borderRadius: "15px",
+              bottom: "125px",
             }}
           >
-            <div className="pa" style={{ textAlign: "center" }}>
-              <p>Hello {userName}</p>
-              <p>Welcome to our portal !!!!!!</p>
+            <div
+              style={{
+                marginTop: "60px",
+                marginLeft: "40px",
+              }}
+            >
+              <div className="pa" style={{ textAlign: "center" }}>
+                <p>Hello {userData.policeName}</p>
+                <p>Welcome to our portal !!!!!!</p>
+              </div>
+              <p style={{ textAlign: "center" }}>Explore the portal</p>
             </div>
-            <p style={{ textAlign: "center" }}>Explore the portal</p>
           </div>
         </div>
-      </div>
-      <footer></footer>
+        <footer></footer>
+      </form>
     </>
   );
 };
